@@ -1,0 +1,132 @@
+### ===============================================================
+### AUTHENTICATION APIS (LOGIN & REGISTER)
+### ===============================================================
+
+### 1. Register User 1 (Anurag)
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "anurag",
+  "email": "anurag@example.com",
+  "password": "password123",
+  "fullName": "Anurag Sharma"
+}
+
+###
+
+### 2. Register User 2 (Priya)
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "priya",
+  "email": "priya@example.com",
+  "password": "password123",
+  "fullName": "Priya Patel"
+}
+
+###
+
+### 3. Login User 1 (with Username)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "usernameOrEmail": "anurag",
+  "password": "password123"
+}
+
+###
+
+### 4. Login User 2 (with Email)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "usernameOrEmail": "priya@example.com",
+  "password": "password123"
+}
+
+###
+
+### 5. Test Invalid Login (Wrong Password -> 401 Unauthorized)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "usernameOrEmail": "anurag",
+  "password": "wrongpassword"
+}
+
+###
+
+### ===============================================================
+### PER-USER APPLIANCE MANAGEMENT APIS
+### ===============================================================
+
+### 6. Add Appliance for User 1 (e.g. userId = 1)
+POST http://localhost:8080/api/appliances
+Content-Type: application/json
+
+{
+  "name": "Anurag AC",
+  "powerWatts": 1500,
+  "hoursPerDay": 8,
+  "daysUsed": 30,
+  "electricityRate": 8.0,
+  "userId": 1
+}
+
+###
+
+### 7. Add Appliance for User 2 (e.g. userId = 2)
+POST http://localhost:8080/api/appliances
+Content-Type: application/json
+
+{
+  "name": "Priya Refrigerator",
+  "powerWatts": 250,
+  "hoursPerDay": 24,
+  "daysUsed": 30,
+  "electricityRate": 8.0,
+  "userId": 2
+}
+
+###
+
+### 8. Get Appliances for User 1 Only (?userId=1)
+GET http://localhost:8080/api/appliances?userId=1
+Accept: application/json
+
+###
+
+### 9. Get Appliances for User 2 Only (?userId=2)
+GET http://localhost:8080/api/appliances?userId=2
+Accept: application/json
+
+###
+
+### 10. Get All Appliances (Admin / Global)
+GET http://localhost:8080/api/appliances
+Accept: application/json
+
+###
+
+### 11. Update Appliance (change ID as needed)
+PUT http://localhost:8080/api/appliances/1
+Content-Type: application/json
+
+{
+  "name": "Anurag Inverter AC",
+  "powerWatts": 1200,
+  "hoursPerDay": 6,
+  "daysUsed": 30,
+  "electricityRate": 8.0,
+  "userId": 1
+}
+
+###
+
+### 12. Delete Appliance (change ID as needed)
+DELETE http://localhost:8080/api/appliances/1
